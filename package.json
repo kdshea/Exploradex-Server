@@ -1,0 +1,22 @@
+{
+  "name": "sei-project-3-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdshea/sei-project-3-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kdshea/sei-project-3-api/issues"
+  },
+  "homepage": "https://github.com/kdshea/sei-project-3-api#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
