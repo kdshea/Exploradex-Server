@@ -1,17 +1,9 @@
 import express from 'express'
-import mongoose from 'mongoose'
+
 import connectToBd from './utilities/database.js'
 
 
-const travelSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  description: { type: String, required: true, unique: true },
-  rating: { type: String },
 
-})
-
-// ? Model - Travel test
-const traveModel = mongoose.model('travel', travelSchema)
 
 
 const PORT = 4000
@@ -31,19 +23,19 @@ app.get('/', (request, response, next) => {
 })
 
 
-app.get('/travel', async (request, response, next) => {
-  const allTravel = await traveModel.find()
-  return response.status(200).json(allTravel)
+
+
+
+
+
+
+
+
+
+// ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
+app.use((reqeust, response) => {
+  return response.status(404).send('404 - required endpoint!')
 })
-
-
-
-
-
-
-
-
-
 
 
 const startServer = async () => {
