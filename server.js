@@ -7,7 +7,6 @@ const PORT = 4000
 
 const app = express()
 app.use(express.json())
-app.use(router)
 
 // ! MIDDLEWARE
 app.use((request, response, next) => {

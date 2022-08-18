@@ -54,6 +54,7 @@ const login = async (req, res, next) => {
     const opts = {
       expiresIn: '2 days',
     }
+    
     // ! We need to set up the environment variables, then change 'test' to CONSTS.JWT_SECRET
     const token = jwt.sign(payload, 'test', opts)
     console.log('payload', payload)
