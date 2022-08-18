@@ -48,7 +48,8 @@ const remove = async (request, response, next) => {
 // ? END POINT TO UPDATE A DESTINATION
 const update = async (request, response, next) => {
   const { destinationId } = request.params
-  const { body: updatedDestination } = request.params
+  const { body: updatedDestination } = request
+  console.log('updated destination', updatedDestination)
   try {
     const updatedDocument = await destinationModel.findByIdAndUpdate(destinationId, updatedDestination, { new: true })
     console.log('updated document', updatedDocument)
