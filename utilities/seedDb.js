@@ -11,7 +11,7 @@ const seed = async () => {
   await connectToDb()
   console.log('Database connect')
 
-  mongoose.connection.db.dropCollection()
+  await mongoose.connection.db.dropDatabase()
 
   const dbCountries = await travelModel.create(seedingData)
 
