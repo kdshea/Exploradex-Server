@@ -2,13 +2,8 @@ import express from 'express'
 import travelModel from './Model/countries.js'
 import userModel from './Model/user.js'
 import connectToDb from './utilities/database.js'
-<<<<<<< HEAD
-=======
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-
->>>>>>> fb1b0a45eec270078ff547712de83b0018e10381
-
 
 const PORT = 4000
 
