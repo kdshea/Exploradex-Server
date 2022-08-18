@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import userModel from '../models/user.js'
+import userModel from '../model/user.js'
 // ! import consts when we've created .env file
 // import CONSTS from '../consts.js'
 
