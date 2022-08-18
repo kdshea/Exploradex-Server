@@ -1,6 +1,6 @@
 import express from 'express'
 
-import connectToBd from './utilities/database.js'
+import connectToDb from './utilities/database.js'
 
 
 
@@ -31,15 +31,14 @@ app.get('/', (request, response, next) => {
 
 
 
-
 // ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
-app.use((reqeust, response) => {
+app.use((request, response) => {
   return response.status(404).send('404 - required endpoint!')
 })
 
 
 const startServer = async () => {
-  await connectToBd()
+  await connectToDb()
   console.log('Database Connection Successful')
 
   app.listen(PORT, () => {
