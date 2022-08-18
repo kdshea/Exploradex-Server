@@ -9,6 +9,6 @@ const travelSchema = new mongoose.Schema({
 })
 
 // ? Model - Travel test
-const traveModel = mongoose.model('travel', travelSchema)
+const travelModel = mongoose.model('travel', travelSchema)
 
-export default traveModel
+export default travelModel

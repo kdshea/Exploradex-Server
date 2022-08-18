@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const connectToBd = async () => {
+const connectToDb = async () => {
   const opts = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -10,4 +10,4 @@ const connectToBd = async () => {
 }
 
 
-export default connectToBd
+export default connectToDb

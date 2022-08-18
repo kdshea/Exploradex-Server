@@ -1,19 +1,19 @@
-import connectToBd from './database.js'
+import connectToDb from './database.js'
 
 import mongoose from 'mongoose'
 
 import seedingData from './seedingData.js'
 
-import traveModel from '../Model/countries.js'
+import travelModel from '../Model/countries.js'
 
 const seed = async () => {
 
-  await connectToBd()
+  await connectToDb()
   console.log('Database connect')
 
-  mongoose.connection.db.dropCollection()
+  await mongoose.connection.db.dropDatabase()
 
-  const dbCountries = await traveModel.create(seedingData)
+  const dbCountries = await travelModel.create(seedingData)
 
   console.log(`${dbCountries.length} countries have been created sucessfully in the database`)
 
