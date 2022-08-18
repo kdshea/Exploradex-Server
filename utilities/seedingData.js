@@ -60,5 +60,5 @@ const destination = [
   }
 ]
 
-export default { destination, users }
+export default destination
 
