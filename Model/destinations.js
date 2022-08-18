@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 
 const destinationSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
+  country: { type: String, required: true, unique: true },
   description: { type: String, required: true, unique: true },
   rating: { type: String },
 

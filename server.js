@@ -1,5 +1,5 @@
 import express from 'express'
-import travelModel from './Model/countries.js'
+import destinationModel from './Model/destinations.js'
 import userModel from './Model/user.js'
 import connectToDb from './utilities/database.js'
 import bcrypt from 'bcrypt'
@@ -43,7 +43,7 @@ app.put('/countries', async (request, response) => {
   const { body: newCountry } = request
   console.log('newCountry', newCountry)
   try {
-    const createdDocument = await travelModel.create(newCountry)
+    const createdDocument = await destinationModel.create(newCountry)
     return response.status(200).json(createdDocument)
   } catch (error) {
     return response.status(500).json({ messages: 'Something went wrong', error })
