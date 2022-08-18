@@ -1,5 +1,25 @@
+import bcrypt from 'bcrypt'
 
+const hashPassword = async (password) => {
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  return hashedPassword
+}
 
+const users = {
+  admin: {
+    email: 'admin@gmailcom',
+    userName: 'admin',
+    password: await hashPassword('1234'),
+    role: 'admin',
+  },
+  user: {
+    email: 'user@gmail.com',
+    userName: 'user',
+    password: await hashPassword('1234'),
+    role: 'user',
+  },
+}
 
 const destination = [
   {
@@ -32,7 +52,7 @@ const destination = [
     description: 'Mexico (Spanish: México), is a fascinating country in North America, lying between the United States of America to the north, and Guatemala and Belize to the southeast. Its extensive coastlines of more than 10,000km include the Gulf of Mexico and the Caribbean Sea to the east and the Pacific Ocean to the west. Mexico has pleasant and warm weather, unique food, art and archaeology, pyramids, music, history, museums, haciendas, superb architecture and 21st century cities, weather from snow mountains in the Sierras, to rainy jungles in the Southeast and desert in the Northwest, numerous golf courses, excellent fishing, and world-class destinations like Acapulco, Cancun, Cozumel, Los Cabos, and Mazatlan. Mexico is ranked as the 7th major destination for foreign visitors, according to the World Trade Organization.',
     rating: '5',
   }
-
 ]
 
-export default destination
+export default { destination, users }
+
