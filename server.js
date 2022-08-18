@@ -1,14 +1,13 @@
 import express from 'express'
 import destinationModel from './Model/destinations.js'
-import userModel from './Model/user.js'
 import connectToDb from './utilities/database.js'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import router from './router.js'
 
 const PORT = 4000
 
 const app = express()
-
+app.use(express.json())
+app.use(router)
 
 // ! MIDDLEWARE
 app.use((request, response, next) => {
@@ -50,39 +49,6 @@ app.put('/countries', async (request, response) => {
   }
 
 })
-
-// ? REGISTER
-
-app.post('/register', async(request, response) => {
-  const { body: newUser } = request
-  console.log('newUser', newUser)
-
-  const emailExists = await userModel.findOne({ email: newUser.email })
-  if (emailExists) {
-    return response.status(400).json({ message: 'User with this email address already exists' })
-  }
-
-  const userNameExists = await userModel.findOne({ userName: newUser.userName })
-  console.log('userNameExists', userNameExists)
-
-  if (userNameExists) {
-    return response.status(400).json({ message: 'User with this username already exists' })
-  }
-  if (newUser.password !== newUser.confirmPassword) {
-    return response.status(400).json({ message: 'Passwords don\'t match' })
-  }
-
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(newUser.password, salt)
-  const createdUser = await userModel.create({
-    ...newUser,
-    password: hashedPassword,
-  })
-  return response.status(200).json({ createdUser })
-})
-
-// ? LOGIN
-
 
 
 
