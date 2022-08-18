@@ -1,10 +1,7 @@
-import express, { request } from 'express'
+import express from 'express'
 import travelModel from './Model/countries.js'
 
 import connectToDb from './utilities/database.js'
-
-
-
 
 
 const PORT = 4000
