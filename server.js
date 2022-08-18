@@ -39,6 +39,20 @@ app.get('/countries/:countryId', async (request, response, next) => {
 })
 
 
+// ? END POINT TO ADD A COUNTRY
+app.put('/countries', async (request, response) => {
+  console.log('body', request.body)
+  const { body: newCountry } = request
+  console.log('newCountry', newCountry)
+  try {
+    const createdDocument = await travelModel.create(newCountry)
+    return response.status(200).json(createdDocument)
+  } catch (error) {
+    return response.status(500).json({ messages: 'Something went wrong', error })
+  }
+
+})
+
 // ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
 app.use((request, response) => {
   return response.status(404).send('404 - required endpoint!')
