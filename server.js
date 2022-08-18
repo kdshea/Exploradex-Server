@@ -1,12 +1,23 @@
 import express from 'express'
 import destinationModel from './Model/destinations.js'
+import userModel from './Model/user.js'
 import connectToDb from './utilities/database.js'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
 import router from './router.js'
+
 
 const PORT = 4000
 
 const app = express()
+
 app.use(express.json())
+
+
+
+app.use(router)
+
 
 // ! MIDDLEWARE
 app.use((request, response, next) => {
@@ -14,40 +25,15 @@ app.use((request, response, next) => {
   next()
 })
 
-// !  health check 
+// !  health check ¡
 app.get('/', (request, response, next) => {
   return response.status(200).send('API is working. Health Check')
 })
 
-// ? END POINT TO GET ALL COUNTRIES
-app.get('/countries', async (request, response) => {
-  const allCountries = await travelModel.find()
-  return response.status(200).json(allCountries)
-})
-
-// ? END POINT TO GET INDIVIDUAL COUNTRY
-app.get('/countries/:countryId', async (request, response, next) => {
-  const { countryId } = request.params
-  console.log('id', countryId)
-  const foundCountry = await travelModel.findById(countryId)
-  console.log('country', foundCountry)
-  return response.status(200).json(foundCountry)
-})
 
 
-// ? END POINT TO ADD A COUNTRY
-app.put('/countries', async (request, response) => {
 
-  const { body: newCountry } = request
-  console.log('newCountry', newCountry)
-  try {
-    const createdDocument = await destinationModel.create(newCountry)
-    return response.status(200).json(createdDocument)
-  } catch (error) {
-    return response.status(500).json({ messages: 'Something went wrong', error })
-  }
 
-})
 
 
 
