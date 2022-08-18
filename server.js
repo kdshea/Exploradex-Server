@@ -41,8 +41,12 @@ app.get('/countries/:countryId', async (request, response, next) => {
 
 // ? END POINT TO ADD A COUNTRY
 app.put('/countries', async (request, response) => {
-  console.log('body', request.body)
+
   const { body: newCountry } = request
+
+  // ! Body of the request is coming back as undefined for me when using { "name": "Sri Lanka", "description": "An island nation in the Indian Ocean" } as the JSON in the post request
+
+  console.log('body', request.body)
   console.log('newCountry', newCountry)
   try {
     const createdDocument = await travelModel.create(newCountry)
