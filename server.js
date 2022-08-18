@@ -1,7 +1,13 @@
 import express from 'express'
 import travelModel from './Model/countries.js'
-
+import userModel from './Model/user.js'
 import connectToDb from './utilities/database.js'
+<<<<<<< HEAD
+=======
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+>>>>>>> fb1b0a45eec270078ff547712de83b0018e10381
 
 
 const PORT = 4000
@@ -40,10 +46,6 @@ app.get('/countries/:countryId', async (request, response, next) => {
 app.put('/countries', async (request, response) => {
 
   const { body: newCountry } = request
-
-  // ! Body of the request is coming back as undefined for me when using { "name": "Sri Lanka", "description": "An island nation in the Indian Ocean" } as the JSON in the post request
-
-  console.log('body', request.body)
   console.log('newCountry', newCountry)
   try {
     const createdDocument = await travelModel.create(newCountry)
@@ -53,6 +55,42 @@ app.put('/countries', async (request, response) => {
   }
 
 })
+
+// ? REGISTER
+
+app.post('/register', async(request, response) => {
+  const { body: newUser } = request
+  console.log('newUser', newUser)
+
+  const emailExists = await userModel.findOne({ email: newUser.email })
+  if (emailExists) {
+    return response.status(400).json({ message: 'User with this email address already exists' })
+  }
+
+  const userNameExists = await userModel.findOne({ userName: newUser.userName })
+  console.log('userNameExists', userNameExists)
+
+  if (userNameExists) {
+    return response.status(400).json({ message: 'User with this username already exists' })
+  }
+  if (newUser.password !== newUser.confirmPassword) {
+    return response.status(400).json({ message: 'Passwords don\'t match' })
+  }
+
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(newUser.password, salt)
+  const createdUser = await userModel.create({
+    ...newUser,
+    password: hashedPassword,
+  })
+  return response.status(200).json({ createdUser })
+})
+
+// ? LOGIN
+
+
+
+
 
 // ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
 app.use((request, response) => {
