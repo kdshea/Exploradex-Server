@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 
-const travelSchema = new mongoose.Schema({
+const destinationSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   description: { type: String, required: true, unique: true },
   rating: { type: String },
@@ -9,6 +9,6 @@ const travelSchema = new mongoose.Schema({
 })
 
 // ? Model - Travel test
-const travelModel = mongoose.model('travel', travelSchema)
+const destinationModel = mongoose.model('destination', destinationSchema)
 
-export default travelModel
+export default destinationModel

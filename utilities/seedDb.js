@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 import seedingData from './seedingData.js'
 
-import travelModel from '../Model/countries.js'
+import destinationModel from '../Model/countries.js'
 
 const seed = async () => {
 
@@ -13,7 +13,7 @@ const seed = async () => {
 
   await mongoose.connection.db.dropDatabase()
 
-  const dbCountries = await travelModel.create(seedingData)
+  const dbCountries = await destinationModel.create(seedingData)
 
   console.log(`${dbCountries.length} countries have been created sucessfully in the database`)
 
