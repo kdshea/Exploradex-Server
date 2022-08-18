@@ -5,8 +5,9 @@ const connectToDb = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
-
-  return mongoose.connect('mongodb://localhost:27017', opts)
+  // ! To change database name add to end of database url ex: mongodb://localhost:27017/destinations
+  // ! Change to CONSTS.DB_CONNECTION_STRING when we have a deployed database url in .env
+  return mongoose.connect('mongodb://localhost:27017/', opts)
 }
 
 
