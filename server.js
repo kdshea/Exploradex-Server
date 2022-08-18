@@ -22,34 +22,34 @@ app.get('/', (request, response, next) => {
 })
 
 // ? END POINT TO GET ALL COUNTRIES
-app.get('/countries', async (request, response) => {
-  const allCountries = await travelModel.find()
-  return response.status(200).json(allCountries)
-})
+// app.get('/countries', async (request, response) => {
+//   const allCountries = await travelModel.find()
+//   return response.status(200).json(allCountries)
+// })
 
 // ? END POINT TO GET INDIVIDUAL COUNTRY
-app.get('/countries/:countryId', async (request, response, next) => {
-  const { countryId } = request.params
-  console.log('id', countryId)
-  const foundCountry = await travelModel.findById(countryId)
-  console.log('country', foundCountry)
-  return response.status(200).json(foundCountry)
-})
+// app.get('/countries/:countryId', async (request, response, next) => {
+//   const { countryId } = request.params
+//   console.log('id', countryId)
+//   const foundCountry = await travelModel.findById(countryId)
+//   console.log('country', foundCountry)
+//   return response.status(200).json(foundCountry)
+// })
 
 
 // ? END POINT TO ADD A COUNTRY
-app.put('/countries', async (request, response) => {
+// app.put('/countries', async (request, response) => {
 
-  const { body: newCountry } = request
-  console.log('newCountry', newCountry)
-  try {
-    const createdDocument = await destinationModel.create(newCountry)
-    return response.status(200).json(createdDocument)
-  } catch (error) {
-    return response.status(500).json({ messages: 'Something went wrong', error })
-  }
+//   const { body: newCountry } = request
+//   console.log('newCountry', newCountry)
+//   try {
+//     const createdDocument = await destinationModel.create(newCountry)
+//     return response.status(200).json(createdDocument)
+//   } catch (error) {
+//     return response.status(500).json({ messages: 'Something went wrong', error })
+//   }
 
-})
+// })
 
 // ? REGISTER
 
