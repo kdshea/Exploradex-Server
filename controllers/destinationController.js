@@ -1,13 +1,11 @@
 import destinationModel from '../Model/destinations.js'
 
 
-
 // ? END POINT TO GET ALL DESTINATIONS
 const getAllDestination = async (request, response ) => {
   const allDestinations = await destinationModel.find()
   return response.status(200).json(allDestinations)
 }
-
 
 // ? END POINT TO GET INDIVIDUAL DESTINATION
 const individualDestination = async (request, response, next) => {
@@ -17,7 +15,6 @@ const individualDestination = async (request, response, next) => {
   console.log('destination', foundDestination)
   return response.status(200).json(foundDestination)
 }
-
 
 // ? END POINT TO ADD A DESTINATION
 const addDestination = async (request, response) => {
@@ -34,14 +31,14 @@ const addDestination = async (request, response) => {
 // ? END POINT TO DELETE A DESTINATION
 const remove = async (request, response, next) => {
   const { destinationId } = request.params
-
   try {
+    if (request.currentUser.role !== 'admin') {
+      return response.status(403).json({ message: 'Only admins can remove destinations' })
+    }
     const deletedDestination = await destinationModel.findByIdAndDelete(destinationId)
-
     if (!deletedDestination) {
       return response.status(404).json( { message: `Destination with ID ${destinationId} not found` } )
     }
-    
     return response.status(200).json({ message: `Destination with ID ${destinationId} has been deleted` })
   } catch (error) {
     next(error)
@@ -58,12 +55,10 @@ const update = async (request, response, next) => {
     if (!updatedDocument) {
       return response.status(404).json( { message: `Destination with ID ${destinationId} not found` } )
     }
-    
     return response.status(200).json(updatedDocument)
   } catch (error) {
     next(error)
   }
-
 }
 
 
