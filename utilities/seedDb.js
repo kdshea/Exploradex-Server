@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 import seedingData from './seedingData.js'
 
-import destinationModel from '../Model/destinations'
+import destinationModel from '../Model/destinations.js'
 
 const seed = async () => {
 
