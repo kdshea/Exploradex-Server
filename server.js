@@ -1,4 +1,5 @@
-import express from 'express'
+import express, { request } from 'express'
+import travelModel from './Model/countries.js'
 
 import connectToDb from './utilities/database.js'
 
@@ -17,25 +18,31 @@ app.use((request, response, next) => {
   next()
 })
 
-// !  healt check 
+// !  health check 
 app.get('/', (request, response, next) => {
   return response.status(200).send('API is working. Health Check')
 })
 
+// ? END POINT TO GET ALL COUNTRIES
+app.get('/countries', async (request, response) => {
+  const allCountries = await travelModel.find()
+  return response.status(200).json(allCountries)
+})
 
-
-
-
-
-
-
+// ? END POINT TO GET INDIVIDUAL COUNTRY
+app.get('/countries/:countryId', async (request, response, next) => {
+  const { countryId } = request.params
+  console.log('id', countryId)
+  const foundCountry = await travelModel.findById(countryId)
+  console.log('country', foundCountry)
+  return response.status(200).json(foundCountry)
+})
 
 
 // ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
 app.use((request, response) => {
   return response.status(404).send('404 - required endpoint!')
 })
-
 
 const startServer = async () => {
   await connectToDb()
