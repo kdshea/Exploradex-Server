@@ -31,7 +31,8 @@ const destination = [
   {
     name: 'Tokyo',
     country: 'Japan',
-    description: 'Japan is one of the most popular travel destinations in the world. It is a unique blend of traditional and modern, with many temples and buildings from the past co-existing with modern achievements in architecture and technology. Tokyo is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are also part of Tokyo.'
+    description: 'Japan is one of the most popular travel destinations in the world. It is a unique blend of traditional and modern, with many temples and buildings from the past co-existing with modern achievements in architecture and technology. Tokyo is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are also part of Tokyo.',
+    rating: '5',
   },
   {
     name: 'Istanbul',
@@ -236,11 +237,19 @@ const destination = [
     country: 'Italy',
     description: 'Venice is one of Italy\'s most romantic cities and also one of the most unique cities in the world. It is located in the northeast of Italy and it is the capital of the province with the same name. Venice is built on a set of about 120 islands formed in the Venetian Lagoon along the Adriatic Sea and it has become famous worldwide thanks to the channels that form the streets of this floating city. ',
     rating: '5',
-  },
-  
+  }
 ]
 
-export default destination
+const reviews = [
+  {
+    reviewText: 'We loved it here',
+    rating: 5,
+    createdBy: '62ff4d405d0017fa5d11ae71',
+    destination: '62ff4d3d5d0017fa5d11ae2b',
+  }
+]
+
+export default { destination, users, reviews }
 
 
 
