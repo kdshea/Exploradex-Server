@@ -130,9 +130,9 @@ const destination = [
     rating: '5',
   },
   {
-    name: 'Rome',
-    country: 'Italy',
-    description: 'A heady mix of haunting ruins, awe-inspiring art and vibrant street life, Italy\'s hot-blooded capital is one of the world\'s most romantic and charismatic cities.',
+    name: 'Riga',
+    country: 'Latvia',
+    description: 'The Gothic spires that dominate Rīga\'s cityscape might suggest austerity, but it is the flamboyant art nouveau that forms the flesh and the spirit of this vibrant cosmopolitan city, the largest of all three Baltic capitals. Like all northerners, it is quiet and reserved on the outside, but there is some powerful chemistry going on inside its hip bars, modern art centres and the kitchens of its cool experimental restaurants.',
     rating: '5',
   },
   {
