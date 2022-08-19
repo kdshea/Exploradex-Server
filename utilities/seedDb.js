@@ -9,8 +9,8 @@ const seed = async () => {
 
   await connectToDb()
   console.log('Database connect')
-
   await mongoose.connection.db.dropDatabase()
+
 
   const dbDestinations = await destinationModel.create(seedingData.destination)
   console.log(`${dbDestinations.length} countries have been created sucessfully in the database`)
