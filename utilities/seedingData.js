@@ -131,12 +131,6 @@ const destination = [
     rating: '5',
   },
   {
-    name: 'Rome',
-    country: 'Italy',
-    description: 'A heady mix of haunting ruins, awe-inspiring art and vibrant street life, Italy\'s hot-blooded capital is one of the world\'s most romantic and charismatic cities.',
-    rating: '5',
-  },
-  {
     name: 'Antalya',
     country: 'Turkey',
     description: 'Turkey\'s principal holiday resort in the Mediterranean region (ancient Pamphylia), is an attractive city with shady palm-lined boulevards, a prize-winning marina on the Mediterranean. In the picturesque old quarter, Kaleici, narrow winding streets and old wooden houses abut the ancient city walls.',
