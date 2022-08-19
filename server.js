@@ -18,7 +18,6 @@ async function startServer() {
   // Use middleware to allow CORS
   app.use(cors())
 
-
   app.use(express.json())
 
   // ! MIDDLEWARE
