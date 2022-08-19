@@ -1,10 +1,9 @@
 import express from 'express'
-import destinationModel from './Model/destinations.js'
+// import destinationModel from './Model/destinations.js'
 import connectToDb from './utilities/database.js'
 import router from './router.js'
 import errorHandler from './middleware/errorHandler.js'
-
-const PORT = 4000
+import CONSTS from './consts.js'
 
 const app = express()
 app.use(express.json())
@@ -34,8 +33,8 @@ const startServer = async () => {
   await connectToDb()
   console.log('Database Connection Successful')
 
-  app.listen(PORT, () => {
-    console.log(`Express server running on PORT ${PORT}`)
+  app.listen(CONSTS.PORT, () => {
+    console.log(`Express server running on PORT ${CONSTS.PORT}`)
   })
 }
 

@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import userModel from '../model/user.js'
-// ! import consts when we've created .env file
-// import CONSTS from '../consts.js'
+import CONSTS from '../consts.js'
 
 const auth = async (req, res, next) => {
   const rawToken = req.headers.authorization
@@ -13,8 +12,8 @@ const auth = async (req, res, next) => {
   const token = rawToken.split(' ')[1]
   console.log('token', token)
   try {
-    // ! Change 'test' to CONSTS.JWT_SECRET when we've created .env file
-    const decodedToken = jwt.verify(token, 'test')
+
+    const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)
     console.log('decoded token', decodedToken)
     const authUser = await userModel.findOne({ userName: decodedToken.userName })
 

@@ -1,8 +1,7 @@
 import UserModel from '../model/user.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-// ! import consts when we've created .env file
-// import CONSTS from './../consts.js'
+import CONSTS from './../consts.js'
 
 
 const register = async (req, res) => {
@@ -55,8 +54,7 @@ const login = async (req, res, next) => {
       expiresIn: '2 days',
     }
     
-    // ! We need to set up the environment variables, then change 'test' to CONSTS.JWT_SECRET
-    const token = jwt.sign(payload, 'test', opts)
+    const token = jwt.sign(payload, CONSTS.JWT_SECRET, opts)
     console.log('payload', payload)
     console.log('token', token)
     return res.status(200).json({ token })

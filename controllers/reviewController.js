@@ -9,6 +9,7 @@ const create = async (request, response) => {
   try {
     // const destination = await destinationModel.findById(destinationId)
     const createdDocument = await reviewModel.create(newReview)
+    console.log('created doc', createdDocument)
     return response.status(200).json(createdDocument)
   } catch (error) {
     error
