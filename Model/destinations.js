@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const destinationSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   country: { type: String, required: true },
@@ -10,7 +9,6 @@ const destinationSchema = new mongoose.Schema({
   reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
 })
 
-// ? Model - Travel test
 const destinationModel = mongoose.model('destination', destinationSchema)
 
 export default destinationModel

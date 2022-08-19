@@ -20,7 +20,7 @@ router
   .get(destinationController.individualDestination)
   .delete(auth, destinationController.remove)
   .put(auth, destinationController.update)
-  .post(auth, reviewController.create)
+  .post(reviewController.create)
 
 router
   .route('/travel/:destinationId/:reviewId')
