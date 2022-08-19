@@ -234,16 +234,8 @@ const destination = [
   }
 ]
 
-const reviews = [
-  {
-    reviewText: 'We loved it here',
-    rating: 5,
-    createdBy: '62ff4d405d0017fa5d11ae71',
-    destination: '62ff4d3d5d0017fa5d11ae2b',
-  }
-]
 
-export default { destination, users, reviews }
+export default { destination, users }
 
 
 
