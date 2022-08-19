@@ -21,9 +21,6 @@ const seed = async () => {
   ])
   console.log(`${dbUsers.length} users have been created in the database.`)
 
-  const dbReviews = await reviewModel.create(seedingData.reviews)
-  console.log(`${dbReviews.length} reviews have been created sucessfully in the database`)
-
 
   console.log(`Going to disconnect from db ${mongoose.connection.name}`)
   if (mongoose.connection.readyState !== 0) {
