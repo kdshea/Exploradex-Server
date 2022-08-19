@@ -1,41 +1,44 @@
 import express from 'express'
-// import destinationModel from './Model/destinations.js'
 import connectToDb from './utilities/database.js'
+import logger from './middleware/logger.js'
 import router from './router.js'
 import errorHandler from './middleware/errorHandler.js'
 import CONSTS from './consts.js'
-
-const app = express()
-app.use(express.json())
-
-
-app.use(router)
-app.use(errorHandler)
-
-// ! MIDDLEWARE
-app.use((request, response, next) => {
-  console.log(`incoming request: ${request.method} - ${request.url}`)
-  next()
-})
-
-// !  health check ¡
-app.get('/', (request, response, next) => {
-  return response.status(200).send('API is working. Health Check')
-})
+import cors from 'cors'
+import dotenv from 'dotenv'
 
 
-// ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
-app.use((request, response) => {
-  return response.status(404).send('404 - required endpoint!')
-})
 
-const startServer = async () => {
+
+async function startServer() {
+  const app = express()
+
+  dotenv.config()
+
+  // Use middleware to allow CORS
+  app.use(cors())
+
+
+  app.use(express.json())
+
+  // ! MIDDLEWARE
+  app.use(logger)
+  app.use(router)
+  app.use(errorHandler)
+
+
+  // ? MAKING AN END POINT TO SEE IF THE SERVER WORKS 
+  app.use((request, response) => {
+    return response.status(404).send('404 - required endpoint!')
+  })
+
   await connectToDb()
   console.log('Database Connection Successful')
 
   app.listen(CONSTS.PORT, () => {
     console.log(`Express server running on PORT ${CONSTS.PORT}`)
   })
+
 }
 
 startServer()

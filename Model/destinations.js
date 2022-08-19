@@ -9,6 +9,7 @@ const destinationSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
   // reviews: [ reviewSchema ],
   reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
+  imgUrl: [{ type: String }],
 })
 
 const destinationModel = mongoose.model('destination', destinationSchema)
