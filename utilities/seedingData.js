@@ -131,6 +131,12 @@ const destination = [
     rating: '5',
   },
   {
+    name: 'Riga',
+    country: 'Latvia',
+    description: 'The Gothic spires that dominate Rīga\'s cityscape might suggest austerity, but it is the flamboyant art nouveau that forms the flesh and the spirit of this vibrant cosmopolitan city, the largest of all three Baltic capitals. Like all northerners, it is quiet and reserved on the outside, but there is some powerful chemistry going on inside its hip bars, modern art centres and the kitchens of its cool experimental restaurants.',
+    rating: '5',
+  },
+  {
     name: 'Antalya',
     country: 'Turkey',
     description: 'Turkey\'s principal holiday resort in the Mediterranean region (ancient Pamphylia), is an attractive city with shady palm-lined boulevards, a prize-winning marina on the Mediterranean. In the picturesque old quarter, Kaleici, narrow winding streets and old wooden houses abut the ancient city walls.',
