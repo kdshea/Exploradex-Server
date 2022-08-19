@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import seedingData from './seedingData.js'
 import destinationModel from '../Model/destinations.js'
 import userModel from '../Model/user.js'
-import reviewModel from '../Model/review.js'
 
 const seed = async () => {
 

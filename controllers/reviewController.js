@@ -1,15 +1,23 @@
-// import destinationModel from '../Model/destinations.js'
+import destinationModel from '../Model/destinations.js'
 import reviewModel from '../Model/review.js'
+import userModel from '../Model/user.js'
 
 
 const create = async (request, response, next) => {
   const { destinationId } = request.params
   const { body: newReview } = request
   const review = { ...newReview, destination: destinationId, createdBy: request.currentUser.id }
-  console.log('new review', review)
   try {
     const createdDocument = await reviewModel.create(review)
-    console.log('created doc', createdDocument)
+    const destinationToUpdate = await destinationModel.findById(destinationId)
+    destinationToUpdate.reviews.push(createdDocument.id)
+
+    await destinationToUpdate.save()
+    const userToUpdate = await userModel.findById(request.currentUser.id)
+    console.log(userToUpdate)
+    console.log('user', userToUpdate)
+    userToUpdate.reviews.push(createdDocument.id)
+
     return response.status(200).json(createdDocument)
   } catch (error) {
     next(error)
