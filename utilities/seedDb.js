@@ -1,10 +1,9 @@
 import connectToDb from './database.js'
-
 import mongoose from 'mongoose'
-
 import seedingData from './seedingData.js'
-
 import destinationModel from '../Model/destinations.js'
+import userModel from '../Model/user.js'
+import reviewModel from '../Model/review.js'
 
 const seed = async () => {
 
@@ -13,9 +12,18 @@ const seed = async () => {
 
   await mongoose.connection.db.dropDatabase()
 
-  const dbCountries = await destinationModel.create(seedingData)
+  const dbDestinations = await destinationModel.create(seedingData.destination)
+  console.log(`${dbDestinations.length} countries have been created sucessfully in the database`)
 
-  console.log(`${dbCountries.length} countries have been created sucessfully in the database`)
+  const dbUsers = await userModel.create([
+    seedingData.users.admin,
+    seedingData.users.user
+  ])
+  console.log(`${dbUsers.length} users have been created in the database.`)
+
+  const dbReviews = await reviewModel.create(seedingData.reviews)
+  console.log(`${dbReviews.length} reviews have been created sucessfully in the database`)
+
 
   console.log(`Going to disconnect from db ${mongoose.connection.name}`)
   if (mongoose.connection.readyState !== 0) {
