@@ -16,19 +16,15 @@ router
   .post(auth, destinationController.addDestination)
 
 router
+  .route('/travel/reviews')
+  .get(reviewController.getAllReviews)
+
+router
   .route('/travel/:destinationId')
   .get(destinationController.individualDestination)
   .delete(auth, destinationController.remove)
   .put(auth, destinationController.update)
   .post(auth, reviewController.create)
-
-router
-  .route('/travel/reviews')
-  .get(reviewController.getAllReviews)
-
-router
-  .route('/travel/reviews/:revewId')
-  .get(reviewController.individualReview)
 
 router
   .route('/travel/:destinationId/:reviewId')
