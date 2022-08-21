@@ -8,6 +8,7 @@ const destinationSchema = new mongoose.Schema({
   description: { type: String, required: true },
   rating: { type: Number, required: true },
   // reviews: [ reviewSchema ],
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
   reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
   imgUrl: [{ type: String }],
 })
