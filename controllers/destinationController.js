@@ -57,7 +57,9 @@ const update = async (request, response, next) => {
     if (!destinationToBeUpdated) {
       return response.status(404).json( { message: `Destination with ID ${destinationId} not found` } )
     }
-    if (destinationToBeUpdated.createdBy.toString !== userId && request.currentUser.role !== 'admin') {
+    console.log('createdBy', destinationToBeUpdated.createdBy.toString())
+    console.log('userID', userId)
+    if (destinationToBeUpdated.createdBy.toString() !== userId && request.currentUser.role !== 'admin') {
       return response.status(403).json({
         message: 'Forbdiden. Not admin or user who created this destination',
       })
