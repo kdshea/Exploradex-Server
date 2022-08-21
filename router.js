@@ -23,7 +23,16 @@ router
   .post(auth, reviewController.create)
 
 router
+  .route('/travel/reviews')
+  .get(reviewController.getAllReviews)
+
+router
+  .route('/travel/reviews/:revewId')
+  .get(reviewController.individualReview)
+
+router
   .route('/travel/:destinationId/:reviewId')
+  .get(reviewController.individualReview)
   .delete(auth, reviewController.remove)
   .put(auth, reviewController.update)
 

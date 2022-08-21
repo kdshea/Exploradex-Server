@@ -19,9 +19,10 @@ const individualDestination = async (request, response, next) => {
 // ? END POINT TO ADD A DESTINATION
 const addDestination = async (request, response) => {
   const { body: newDestination } = request
-  console.log('new destination', newDestination)
+  const destination = { ...newDestination, createdBy: request.currentUser.id }
+  console.log('new destination', destination)
   try {
-    const createdDocument = await destinationModel.create(newDestination)
+    const createdDocument = await destinationModel.create(destination)
     return response.status(200).json(createdDocument)
   } catch (error) {
     return response.status(500).json({ messages: 'Something went wrong', error })
@@ -49,8 +50,18 @@ const remove = async (request, response, next) => {
 const update = async (request, response, next) => {
   const { destinationId } = request.params
   const { body: updatedDestination } = request
+  const { id: userId } = request.currentUser
   console.log('updated destination', updatedDestination)
   try {
+    const destinationToBeUpdated = await destinationModel.findById(destinationId)
+    if (!destinationToBeUpdated) {
+      return response.status(404).json( { message: `Destination with ID ${destinationId} not found` } )
+    }
+    if (destinationToBeUpdated.createdBy.toString !== userId && request.currentUser.role !== 'admin') {
+      return response.status(403).json({
+        message: 'Forbdiden. Not admin or user who created this destination',
+      })
+    }
     const updatedDocument = await destinationModel.findByIdAndUpdate(destinationId, updatedDestination, { new: true })
     console.log('updated document', updatedDocument)
     if (!updatedDocument) {

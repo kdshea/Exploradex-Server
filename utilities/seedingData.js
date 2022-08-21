@@ -12,6 +12,7 @@ const users = {
     userName: 'admin',
     password: await hashPassword('1234'),
     role: 'admin',
+    _id: '0fc2faa7725e24f505da6c3e',
   },
   user: {
     email: 'user@gmail.com',
@@ -238,10 +239,12 @@ const destination = [
     description: 'Venice is one of Italy\'s most romantic cities and also one of the most unique cities in the world. It is located in the northeast of Italy and it is the capital of the province with the same name. Venice is built on a set of about 120 islands formed in the Venetian Lagoon along the Adriatic Sea and it has become famous worldwide thanks to the channels that form the streets of this floating city. ',
     rating: '5',
   }
-]
+].map((destination) => ({
+  ...destination,
+  createdBy: users.admin._id,
+}))
 
 
 export default { destination, users }
-
 
 
