@@ -14,7 +14,6 @@ const auth = async (req, res, next) => {
   try {
 
     const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)
-    console.log('decoded token', decodedToken)
     const authUser = await userModel.findOne({ userName: decodedToken.userName })
 
     if (!authUser) {
@@ -22,7 +21,6 @@ const auth = async (req, res, next) => {
     }
   
     req.currentUser = authUser
-    console.log('authUser', authUser)
     next()
   } catch (error) {
     next(error)

@@ -7,9 +7,14 @@ const destinationSchema = new mongoose.Schema({
   // continent: { type: String. required: true },
   description: { type: String, required: true },
   rating: { type: Number, required: true },
-  // reviews: [ reviewSchema ],
+  reviews: [ {
+    reviewText: { type: String, required: true },
+    rating: { type: Number },
+    activities: [{ type: String, required: true }],
+    createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
+    destination: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
+  } ],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
-  reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
   imgUrl: [{ type: String }],
 })
 
