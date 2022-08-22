@@ -8,9 +8,7 @@ const auth = async (req, res, next) => {
   if (!rawToken) {
     return res.status(400).json({ message: 'Unauthorized - No token provided' })
   }
-  
   const token = rawToken.split(' ')[1]
-  console.log('token', token)
   try {
 
     const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)

@@ -36,6 +36,7 @@ const remove = async (request, response, next) => {
     if (request.currentUser.role !== 'admin') {
       return response.status(403).json({ message: 'Only admins can remove destinations' })
     }
+    // Delete destination
     const deletedDestination = await destinationModel.findByIdAndDelete(destinationId)
     if (!deletedDestination) {
       return response.status(404).json( { message: `Destination with ID ${destinationId} not found` } )
