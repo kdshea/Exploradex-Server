@@ -6,7 +6,6 @@ import CONSTS from './../consts.js'
 
 const register = async (req, res) => {
   const { body: newUser } = req
-  console.log('newUser', newUser)
 
   const emailExists = await userModel.findOne({ email: newUser.email })
   if (emailExists) {
@@ -55,8 +54,6 @@ const login = async (req, res, next) => {
     }
     
     const token = jwt.sign(payload, CONSTS.JWT_SECRET, opts)
-    console.log('payload', payload)
-    console.log('token', token)
     return res.status(200).json({ token })
   } catch (error) {
     next(error)

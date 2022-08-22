@@ -8,7 +8,13 @@ const userSchema = new mongoose.Schema({
   fullName: String,
   mobile: String,
   aboutMeText: String,
-  reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
+  reviews: [ {
+    reviewText: { type: String, required: true },
+    rating: { type: Number },
+    activities: [{ type: String, required: true }],
+    createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
+    destination: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
+  } ],
 })
 
 export default mongoose.model('user', userSchema)
