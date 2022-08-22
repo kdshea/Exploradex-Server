@@ -34,7 +34,6 @@ router
 
 router.route('/register').post(userController.register)
 router.route('/login').post(userController.login)
-
 router.route('/users').get(auth, userController.getAll)
 router.route('/users/:userId').get(userController.individualUser)
 

@@ -78,7 +78,7 @@ const remove = async (request, response, next) => {
     )
     await destinationToUpdate.save()
 
-    // Remove review ID from user
+    // Remove review from user
     const userToUpdate = await userModel.findById(request.currentUser.id)
     if (!userToUpdate) {
       return response.status(400).json({ message: `User with ID ${userId} not found` })
