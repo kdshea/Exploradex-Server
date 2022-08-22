@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import CONSTS from './../consts.js'
 
-
+// ? ENDPOINT TO REGISTER NEW USER
 const register = async (req, res) => {
   const { body: newUser } = req
 
@@ -29,6 +29,7 @@ const register = async (req, res) => {
   return res.status(200).json({ createdUser })
 }
 
+// ? ENDPOINT TO LOGIN
 const login = async (req, res, next) => {
   const { userName, password } = req.body
   
@@ -60,4 +61,24 @@ const login = async (req, res, next) => {
   }
 }
 
-export default { register, login }
+const getAll = async (request, response, next ) => {
+  if (request.currentUser.role !== 'admin') {
+    return response.status(403).json({ message: 'Only admins can remove destinations' })
+  }
+  const allUsers = await userModel.find()
+  return response.status(200).json(allUsers)
+}
+
+const individualUser = async (request, response, next) => {
+  const { userId } = request.params
+  const foundUser = await userModel.findById(userId)
+  return response.status(200).json(foundUser)
+}
+
+
+export default { 
+  register, 
+  login,
+  getAll,
+  individualUser,
+}
