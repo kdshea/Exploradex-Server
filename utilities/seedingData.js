@@ -22,6 +22,9 @@ const users = {
         activities: [ 'shopping', 'sightseeing' ],
         destinationId: '6304ef8126cede9afd876118',
         destinationName: 'Dubai',
+        reviewImgUrl: [ 'img.jpg' ],
+        reviewId: '630520d30b7f7a4f9473aa66',
+
       }
     ],
     _id: '0fc2faa7725e24f505da6c3e',
@@ -47,7 +50,9 @@ const destination = [
       reviewText: 'We loved it!',
       rating: 5,
       activities: [ 'shopping', 'sightseeing' ],
+      reviewImgUrl: [ 'img.jpg' ],
       createdBy: users.admin._id,
+      reviewId: '630520d30b7f7a4f9473aa66',
     }],
     imgUrl: [
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Dubai/200924183413-dubai-9-1.jpg',
@@ -515,6 +520,7 @@ const review = [
     createdBy: users.admin._id,
     destinationId: destination[0]._id,
     destinationName: 'Dubai',
+    _id: '630520d30b7f7a4f9473aa66',
   }
 ]
 

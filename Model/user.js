@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     destinationId: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
     destinationName: String,
     reviewImgUrl: [{ type: String }],
+    reviewId: {  type: mongoose.Schema.ObjectId, ref: 'review', required: true },
   } ],
 })
 

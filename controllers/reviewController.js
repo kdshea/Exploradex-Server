@@ -92,7 +92,6 @@ const remove = async (request, response, next) => {
   }
 }
 
-
 // ? ENDPOINT TO UPDATE A REVIEW
 const update = async (request, response, next) => {
   const { destinationId, reviewId } = request.params
@@ -103,40 +102,37 @@ const update = async (request, response, next) => {
     if (!reviewToBeUpdated) {
       return response.status(404).json( { message: `Review with ID ${reviewId} not found` } )
     }
-
     // Only user who made review or admin can remove
     if (reviewToBeUpdated.createdBy.toString() !== userId && request.currentUser.role !== 'admin') {
       return response.status(403).json({
         message: 'Forbdiden. Not admin or user who created this review',
       })
     }
-
     // Update review in destination 
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
-    destinationToUpdate.reviews.map(
-      (review) => {
-        if (review.id.toString() !== reviewId) {
-          review = { ...updatedReview }
-        }
+    destinationToUpdate.reviews = destinationToUpdate.reviews.map((item) => {
+      if (item.reviewId.toString() === reviewId) {
+        return { ...item, ...updatedReview }
+      } else {
+        return item
       }
-    )
+    })
     await destinationToUpdate.save()
-
     // Update review in user
     const userToUpdate = await userModel.findById(request.currentUser.id)
     if (!userToUpdate) {
       return response.status(400).json({ message: `User with ID ${userId} not found` })
     }
-    userToUpdate.reviews.map(
-      (review) => {
-        if (review.id.toString() !== reviewId) {
-          review = { ...updatedReview }
-        }
+    userToUpdate.reviews = userToUpdate.reviews.map((item) => {
+      if (item.reviewId.toString() === reviewId) {
+        return { ...item, ...updatedReview }
+      } else {
+        return item
       }
-    )
+    })
     await userToUpdate.save()
 
     // Update review

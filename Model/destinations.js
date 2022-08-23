@@ -13,6 +13,7 @@ const destinationSchema = new mongoose.Schema({
     activities: [{ type: String, required: true }],
     reviewImgUrl: [{ type: String }],
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
+    reviewId: {  type: mongoose.Schema.ObjectId, ref: 'review', required: true },
   } ],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
   imgUrl: [{ type: String }],
