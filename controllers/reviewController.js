@@ -1,4 +1,5 @@
 import destinationModel from '../Model/destinations.js'
+// import review from '../Model/review.js'
 import reviewModel from '../Model/review.js'
 import userModel from '../Model/user.js'
 
@@ -26,15 +27,16 @@ const create = async (request, response, next) => {
   const { destinationId } = request.params
 
   const { body: newReview } = request
-  const review = { ...newReview, destination: destinationId, createdBy: request.currentUser.id }
+  let review = { ...newReview, destinationId: destinationId, createdBy: request.currentUser.id }
   try {
-    const createdDocument = await reviewModel.create(review)
-
     // Add new review to destination
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
+    const destinationName = destinationToUpdate.name
+    review = { ...review, destinationName }
+    const createdDocument = await reviewModel.create(review)
     destinationToUpdate.reviews.push(createdDocument)
     await destinationToUpdate.save()
 

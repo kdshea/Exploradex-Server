@@ -12,7 +12,6 @@ const destinationSchema = new mongoose.Schema({
     rating: { type: Number },
     activities: [{ type: String, required: true }],
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
-    destination: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
   } ],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
   imgUrl: [{ type: String }],

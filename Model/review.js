@@ -5,7 +5,8 @@ const reviewSchema = new mongoose.Schema({
   rating: { type: Number },
   activities: [{ type: String, required: true }],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
-  destination: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
+  destinationId: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
+  destinationName: String,
 })
 
 export default mongoose.model('review', reviewSchema)
