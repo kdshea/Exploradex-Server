@@ -8,6 +8,8 @@ const hashPassword = async (password) => {
 
 const users = {
   admin: {
+    displayName: 'Admin\'s Name',
+    profileImg: 
     email: 'admin@gmailcom',
     userName: 'admin',
     password: await hashPassword('1234'),
@@ -20,6 +22,10 @@ const users = {
     password: await hashPassword('1234'),
     role: 'user',
   },
+
+
+
+  https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/serhan.webp
 }
 
 const destination = [

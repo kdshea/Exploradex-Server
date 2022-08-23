@@ -26,7 +26,7 @@ const create = async (request, response, next) => {
   const { destinationId } = request.params
 
   const { body: newReview } = request
-  const review = { ...newReview, destination: destinationId, createdBy: request.currentUser.id }
+  const review = { ...newReview, destinationId: destinationId, createdBy: request.currentUser.id }
   try {
     const createdDocument = await reviewModel.create(review)
 
@@ -37,9 +37,10 @@ const create = async (request, response, next) => {
     }
     destinationToUpdate.reviews.push(createdDocument)
     await destinationToUpdate.save()
-
+    console.log('destination name', destinationToUpdate.name)
     // Add new review to user
     const userToUpdate = await userModel.findById(request.currentUser.id)
+  //  { createdDocument, destinationToUpdate.name : destinationName }
     userToUpdate.reviews.push(createdDocument)
     await userToUpdate.save()
 
