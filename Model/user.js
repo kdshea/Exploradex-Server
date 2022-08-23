@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     activities: [{ type: String, required: true }],
     destinationId: { type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
     destinationName: String,
+    reviewImgUrl: [{ type: String }],
   } ],
 })
 

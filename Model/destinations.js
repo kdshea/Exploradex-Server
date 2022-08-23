@@ -11,6 +11,7 @@ const destinationSchema = new mongoose.Schema({
     reviewText: { type: String, required: true },
     rating: { type: Number },
     activities: [{ type: String, required: true }],
+    reviewImgUrl: [{ type: String }],
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
   } ],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'user', required: true },
