@@ -35,7 +35,7 @@ const login = async (req, res, next) => {
   
   try {
     const user = await userModel.findOne({ userName })
-
+    const id = user._id
     if (!user) {
       return res.status(400).json({ messages: 'Invalid credentials' })
     }
@@ -48,6 +48,7 @@ const login = async (req, res, next) => {
     const payload = {
       userName: user.userName,
       email: user.email,
+      id: user._id,
     }
 
     const opts = {
@@ -55,7 +56,11 @@ const login = async (req, res, next) => {
     }
     
     const token = jwt.sign(payload, CONSTS.JWT_SECRET, opts)
-    return res.status(200).json({ token })
+    console.log('token', token)
+    const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)
+    console.log('decoded token', decodedToken)
+
+    return res.status(200).json({ token, id })
   } catch (error) {
     next(error)
   }
@@ -70,6 +75,7 @@ const getAll = async (request, response, next ) => {
 }
 
 const individualUser = async (request, response, next) => {
+  console.log('current user', request.currentUser)
   const { userId } = request.params
   const foundUser = await userModel.findById(userId)
   return response.status(200).json(foundUser)
