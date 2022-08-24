@@ -13,11 +13,10 @@ const auth = async (request, response, next) => {
 
     const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)
     const authUser = await userModel.findOne({ userName: decodedToken.userName })
-
     if (!authUser) {
       return response.status(401).json({ message: 'Token affiliated to user does not exist anymore' })
     }
-    console.log('decoded token', decodedToken)
+    // console.log('decoded token', decodedToken)
     request.currentUser = authUser
     next()
   } catch (error) {

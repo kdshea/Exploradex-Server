@@ -40,7 +40,8 @@ const create = async (request, response, next) => {
     newReview.reviewId = newReview._id 
     delete newReview._id
     // Add new review to destination
-    destinationToUpdate.reviews.push(newReview)
+    const addReviewToDestination = { ...newReview, displayName: request.currentUser.displayName }
+    destinationToUpdate.reviews.push(addReviewToDestination)
     await destinationToUpdate.save()
     // Add new review to user
     const userToUpdate = await userModel.findById(request.currentUser.id)
