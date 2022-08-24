@@ -21,6 +21,7 @@
   "homepage": "https://github.com/kdshea/sei-project-3-api#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "Buffer": "^0.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "env": "^0.0.2",
