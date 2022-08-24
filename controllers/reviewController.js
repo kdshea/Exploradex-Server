@@ -21,11 +21,17 @@ const create = async (request, response, next) => {
   const { body: newReview } = request
   let review = { ...newReview, destinationId: destinationId, createdBy: request.currentUser.id }
   try {
-    // Creating new review from model
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
+    // Only allow 1 rating per destination
+    destinationToUpdate.reviews.map((item) =>{
+      if (item.createdBy.toString() === request.currentUser.id) {
+        return response.status(403).json({ message: 'You already rated this destination' })
+      }
+    })
+    // Creating new review from model
     const destinationName = destinationToUpdate.name
     review = { ...review, destinationName }
     const createdDocument = await reviewModel.create(review)
