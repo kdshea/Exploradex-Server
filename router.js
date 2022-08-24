@@ -6,8 +6,6 @@ import auth from './middleware/auth.js'
 
 const router = express.Router()
 
-
-
 router.route('/').get((request, response) => response.status(200).send('API is running'))
 
 router
@@ -35,7 +33,11 @@ router
 router.route('/register').post(userController.register)
 router.route('/login').post(userController.login)
 router.route('/users').get(auth, userController.getAll)
-router.route('/users/:userId').get(auth, userController.individualUser)
+
+router
+  .route('/users/:userId')
+  .get(auth, userController.individualUser)
+  .put(auth, userController.update)
 
 
 export default router
