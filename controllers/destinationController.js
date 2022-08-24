@@ -25,6 +25,7 @@ const addDestination = async (request, response) => {
     const createdDocument = await destinationModel.create(destination)
     return response.status(200).json(createdDocument)
   } catch (error) {
+    console.log(error)
     return response.status(500).json({ messages: 'Something went wrong', error })
   }
 }
