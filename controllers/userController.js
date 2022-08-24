@@ -25,6 +25,7 @@ const register = async (request, response) => {
   const createdUser = await userModel.create({
     ...newUser,
     password: hashedPassword,
+    profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-profile-avatar.jpg',
   })
   return response.status(200).json({ createdUser })
 }
@@ -38,6 +39,7 @@ const login = async (request, response, next) => {
     if (!user) {
       return response.status(400).json({ messages: 'Invalid credentials' })
     }
+    console.log('user', user)
     const userId = user._id
     const passwordsMatch = await bcrypt.compare(password, user.password)
     if (!passwordsMatch) {
