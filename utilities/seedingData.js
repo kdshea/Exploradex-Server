@@ -136,9 +136,8 @@ const destination = [
     name: 'Bali',
     country: 'Indonesia',
     description: 'The famed "Island of the Gods", with its varied landscape of hills and mountains, rugged coastlines and sandy beaches, lush rice terraces, and volcanic hillsides all providing a picturesque backdrop to its colorful, deeply spiritual, and unique culture stakes a serious claim to be paradise on earth. With world-class surfing and diving, a large number of cultural, historical, and archaeological attractions, and an enormous range of accommodations, this is one of the world\'s most popular island destinations and one which consistently wins travel awards.',
-    rating: 5,
-    imgUrl: [
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Bali/aerial.jpeg',
+    rating: '5',
+    imgUrl: [      
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Bali/bali-temple.jpg',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Bali/baliguide.jpg',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Bali/shutterstock_631736717.webp'
@@ -371,9 +370,8 @@ const destination = [
     description: 'London — home to world-class restaurants, an unparalleled music scene, and some seriously rich history. Plus, tea. Who could forget the tea? London is a wonderful city to visit, and with London\'s fantastic public transportation, it\'s a breeze to get from point A to point B. You could easily spend a week or more exploring all that each London neighborhood has to offer, and still have things left over for your next visit.',
     rating: 5,
     imgUrl: [
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/London_Eye_Twilight_April_2006.jpeg',
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/dias-festivos.webp',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/londra_featured-1.jpeg',
+      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/London_Eye_Twilight_April_2006.jpeg',   
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/b4a15da2-lm-5246-16da53a6d21.jpeg',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/London/f8147872-890b-e611-80cb-c81f66f7476e.jpeg'
     ],
@@ -395,13 +393,13 @@ const destination = [
     name: 'Barcelona',
     country: 'Spain',
     description: 'Overlooking the Mediterranean Sea, and famous for Gaudí and other Art Nouveau architecture, Barcelona is one of Europe\'s trendiest cities. It\'s a hub of new trends in the world of culture, fashion and cuisine. It combines the creativity of its artists and designers with respect and care for local traditions.',
-    rating: 5,
+    rating: '5',
     imgUrl: [
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/1200x675-743746107.jpeg                    ',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/barcelona2.jpeg ',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/spain_barcelona_3840x2160.jpeg',
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/1200x675-993863262.jpeg',
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/barcelona.jpeg'
+      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/1200x675-993863262.jpeg',      
+      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Barcelona/1200x675-743746107.jpeg'
     ],
   },
   {
@@ -449,9 +447,9 @@ const destination = [
     description: 'With towering skyscrapers, volcanic islands and picturesque beaches, Auckland seamlessly blends majestic scenery with the hustle and bustle of city living. For adventure junkies, there\'s everything from zip lining on Waiheke Island to bungee jumping from the Sky Tower.',
     rating: 5,
     imgUrl: [
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/2f.jpeg',
-      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/Auckland-destination-3.webp',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/ss_1973285717_mount_eden_auckland_3000x1000.jpeg',
+      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/2f.jpeg',
+      'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/Auckland-destination-3.webp',      
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/8002269-mount-eden-auckland.webp',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Auckland/Holidaymakers-New-Zealand-Auckland-Visit-Traveling--1280x720.jpeg'
     ],
@@ -460,7 +458,7 @@ const destination = [
     name: 'Christchurch',
     country: 'New Zealand',
     description: 'Christchurch is the city of exploration, where urban regeneration and heritage thrive. The city is constantly evolving, always giving locals and visitors something new to explore. Expect street art and innovative projects, a bustling hospitality scene and established green spaces. Christchurch is the newest city in the world, and it\'s time the world rediscovered its secrets.',
-    rating: 5,
+    rating: '5',
     imgUrl: [
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/ChristChurch/15996709-punting-on-the-river-avon.webp',
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/ChristChurch/1621988484471.jpeg',
