@@ -1,17 +1,12 @@
 import destinationModel from '../Model/destinations.js'
-// import review from '../Model/review.js'
 import reviewModel from '../Model/review.js'
 import userModel from '../Model/user.js'
-
-
 
 // ? END POINT TO GET ALL REVIEWS
 const getAllReviews = async (request, response, next ) => {
   const allReviews = await reviewModel.find()
   return response.status(200).json(allReviews)
 }
-
-
 
 // ? END POINT TO GET INDIVIDUAL REVIEW
 const individualReview = async (request, response, next) => {
@@ -20,29 +15,36 @@ const individualReview = async (request, response, next) => {
   return response.status(200).json(foundReview)
 }
 
-
-
 // ? ENDPOINT TO CREATE A NEW REVIEW
 const create = async (request, response, next) => {
   const { destinationId } = request.params
-
   const { body: newReview } = request
   let review = { ...newReview, destinationId: destinationId, createdBy: request.currentUser.id }
   try {
-    // Add new review to destination
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
+    // Only allow 1 rating per destination
+    destinationToUpdate.reviews.map((item) =>{
+      if (item.createdBy.toString() === request.currentUser.id) {
+        return response.status(403).json({ message: 'You already rated this destination' })
+      }
+    })
+    // Creating new review from model
     const destinationName = destinationToUpdate.name
     review = { ...review, destinationName }
     const createdDocument = await reviewModel.create(review)
-    destinationToUpdate.reviews.push(createdDocument)
+    // Changing _id key from created review to reviewId to append to the users and destinations
+    const newReview = { ...createdDocument._doc }
+    newReview.reviewId = newReview._id 
+    delete newReview._id
+    // Add new review to destination
+    destinationToUpdate.reviews.push(newReview)
     await destinationToUpdate.save()
-
     // Add new review to user
     const userToUpdate = await userModel.findById(request.currentUser.id)
-    userToUpdate.reviews.push(createdDocument)
+    userToUpdate.reviews.push(newReview)
     await userToUpdate.save()
 
     return response.status(200).json(createdDocument)
@@ -51,12 +53,10 @@ const create = async (request, response, next) => {
   }
 }
 
-
 // ? ENDPOINT TO REMOVE A REVIEW
 const remove = async (request, response, next) => {
   const { reviewId, destinationId } = request.params
   const { id: userId } = request.currentUser
-
   try {
     const reviewToBeDeleted = await reviewModel.findById(reviewId)
     if (!reviewToBeDeleted) {
@@ -69,7 +69,6 @@ const remove = async (request, response, next) => {
         message: 'Forbdiden. Not admin or user who created this review',
       })
     }
-
     // Remove review from destination
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
@@ -79,7 +78,6 @@ const remove = async (request, response, next) => {
       (review) => review.id.toString() !== reviewId
     )
     await destinationToUpdate.save()
-
     // Remove review from user
     const userToUpdate = await userModel.findById(request.currentUser.id)
     if (!userToUpdate) {
@@ -89,8 +87,7 @@ const remove = async (request, response, next) => {
       (review) => review.id.toString() !== reviewId
     )
     await userToUpdate.save()
-
-    // Remove review
+    // Remove review from database
     const deletedReview = await reviewModel.findByIdAndDelete(reviewId)
     if (!deletedReview) {
       return response.status(400).json({ message: `Review with ID ${reviewId} could not be found` })
@@ -100,7 +97,6 @@ const remove = async (request, response, next) => {
     next(error)
   }
 }
-
 
 // ? ENDPOINT TO UPDATE A REVIEW
 const update = async (request, response, next) => {
@@ -112,40 +108,37 @@ const update = async (request, response, next) => {
     if (!reviewToBeUpdated) {
       return response.status(404).json( { message: `Review with ID ${reviewId} not found` } )
     }
-
     // Only user who made review or admin can remove
     if (reviewToBeUpdated.createdBy.toString() !== userId && request.currentUser.role !== 'admin') {
       return response.status(403).json({
         message: 'Forbdiden. Not admin or user who created this review',
       })
     }
-
     // Update review in destination 
     const destinationToUpdate = await destinationModel.findById(destinationId)
     if (!destinationToUpdate) {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
-    destinationToUpdate.reviews.map(
-      (review) => {
-        if (review.id.toString() !== reviewId) {
-          review = { ...updatedReview }
-        }
+    destinationToUpdate.reviews = destinationToUpdate.reviews.map((item) => {
+      if (item.reviewId.toString() === reviewId) {
+        return { ...item, ...updatedReview }
+      } else {
+        return item
       }
-    )
+    })
     await destinationToUpdate.save()
-
     // Update review in user
     const userToUpdate = await userModel.findById(request.currentUser.id)
     if (!userToUpdate) {
       return response.status(400).json({ message: `User with ID ${userId} not found` })
     }
-    userToUpdate.reviews.map(
-      (review) => {
-        if (review.id.toString() !== reviewId) {
-          review = { ...updatedReview }
-        }
+    userToUpdate.reviews = userToUpdate.reviews.map((item) => {
+      if (item.reviewId.toString() === reviewId) {
+        return { ...item, ...updatedReview }
+      } else {
+        return item
       }
-    )
+    })
     await userToUpdate.save()
 
     // Update review

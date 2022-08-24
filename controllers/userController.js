@@ -4,20 +4,20 @@ import jwt from 'jsonwebtoken'
 import CONSTS from './../consts.js'
 
 // ? ENDPOINT TO REGISTER NEW USER
-const register = async (req, res) => {
-  const { body: newUser } = req
+const register = async (request, response) => {
+  const { body: newUser } = request
 
   const emailExists = await userModel.findOne({ email: newUser.email })
   if (emailExists) {
-    return res.status(400).json({ message: 'User with this email address already exists' })
+    return response.status(400).json({ message: 'User with this email address already exists' })
   }
   const userNameExists = await userModel.findOne({ userName: newUser.userName })
 
   if (userNameExists) {
-    return res.status(400).json({ message: 'User with this username already exists' })
+    return response.status(400).json({ message: 'User with this username already exists' })
   }
   if (newUser.password !== newUser.confirmPassword) {
-    return res.status(400).json({ message: 'Passwords don\'t match' })
+    return response.status(400).json({ message: 'Passwords don\'t match' })
   }
 
   const salt = await bcrypt.genSalt(10)
@@ -25,30 +25,31 @@ const register = async (req, res) => {
   const createdUser = await userModel.create({
     ...newUser,
     password: hashedPassword,
+    profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-profile-avatar.jpg',
   })
-  return res.status(200).json({ createdUser })
+  return response.status(200).json({ createdUser })
 }
 
 // ? ENDPOINT TO LOGIN
-const login = async (req, res, next) => {
-  const { userName, password } = req.body
+const login = async (request, response, next) => {
+  const { userName, password } = request.body
   
   try {
     const user = await userModel.findOne({ userName })
-    const id = user._id
     if (!user) {
-      return res.status(400).json({ messages: 'Invalid credentials' })
+      return response.status(400).json({ messages: 'Invalid credentials' })
     }
-
+    console.log('user', user)
+    const userId = user._id
     const passwordsMatch = await bcrypt.compare(password, user.password)
     if (!passwordsMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' })
+      return response.status(400).json({ message: 'Invalid credentials' })
     }
 
     const payload = {
       userName: user.userName,
       email: user.email,
-      id: user._id,
+      userId: user._id.toString(),
     }
 
     const opts = {
@@ -60,7 +61,7 @@ const login = async (req, res, next) => {
     const decodedToken = jwt.verify(token, CONSTS.JWT_SECRET)
     console.log('decoded token', decodedToken)
 
-    return res.status(200).json({ token, id })
+    return response.status(200).json({ token, userId })
   } catch (error) {
     next(error)
   }

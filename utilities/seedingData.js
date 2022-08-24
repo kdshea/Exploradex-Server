@@ -7,34 +7,50 @@ const hashPassword = async (password) => {
 }
 
 const users = {
-  admin: {
-    displayName: 'Admin Admin',
-    profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/serhan.webp',
-    email: 'admin@gmailcom',
-    userName: 'admin',
-    password: await hashPassword('1234'),
-    role: 'admin',
-    aboutMeText: 'I\'m an admin. I enjoy travelling.',
-    reviews: [
-      {
-        reviewText: 'We loved it!',
-        rating: 5,
-        activities: [ 'shopping', 'sightseeing' ],
-        destinationId: '6304ef8126cede9afd876118',
-        destinationName: 'Dubai',
-      }
-    ],
-    _id: '0fc2faa7725e24f505da6c3e',
-  },
-  user: {
-    displayName: 'User User',
-    profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/serhan.webp',
-    email: 'user@gmail.com',
-    userName: 'user',
-    password: await hashPassword('1234'),
-    role: 'user',
-    aboutMeText: 'I\'m a user and I love to travel!!!',
-  },
+  admin: [
+    {
+      displayName: 'Admin Admin',
+      profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-profile-avatar.jpg',
+      email: 'admin@gmailcom',
+      userName: 'admin',
+      password: await hashPassword('1234'),
+      role: 'admin',
+      aboutMeText: 'I\'m an admin. I enjoy travelling.',
+      reviews: [
+        {
+          reviewText: 'We loved it!',
+          rating: 5,
+          activities: [ 'shopping', 'sightseeing' ],
+          destinationId: '6304ef8126cede9afd876118',
+          destinationName: 'Dubai',
+          reviewImgUrl: [ 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' ],
+          reviewId: '630520d30b7f7a4f9473aa66',
+
+        }
+      ],
+      _id: '0fc2faa7725e24f505da6c3e',
+    } 
+  ],
+  user: [
+    {
+      displayName: 'User User',
+      profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-profile-avatar.jpg',
+      email: 'user@gmail.com',
+      userName: 'user',
+      password: await hashPassword('1234'),
+      role: 'user',
+      aboutMeText: 'I\'m a user and I love to travel!!!',
+    },
+    {
+      displayName: 'Serhan Miah',
+      profileImg: 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/serhan.webp',
+      email: 'serhan@gmail.com',
+      userName: 'serhan',
+      password: await hashPassword('1234'),
+      role: 'user',
+      aboutMeText: 'I\'m Serhan and I love to travel!!!',
+    }
+  ],
 }
 
 const destination = [
@@ -47,7 +63,9 @@ const destination = [
       reviewText: 'We loved it!',
       rating: 5,
       activities: [ 'shopping', 'sightseeing' ],
-      createdBy: users.admin._id,
+      reviewImgUrl: [ 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' ],
+      createdBy: users.admin[0]._id,
+      reviewId: '630520d30b7f7a4f9473aa66',
     }],
     imgUrl: [
       'https://sei65-destinations.s3.eu-west-1.amazonaws.com/Destination+/Dubai/200924183413-dubai-9-1.jpg',
@@ -504,7 +522,7 @@ const destination = [
   }
 ].map((destination) => ({
   ...destination,
-  createdBy: users.admin._id,
+  createdBy: users.admin[0]._id,
 }))
 
 const review = [
@@ -512,9 +530,10 @@ const review = [
     reviewText: 'We loved it!',
     rating: 5,
     activities: [ 'shopping', 'sightseeing' ],
-    createdBy: users.admin._id,
+    createdBy: users.admin[0]._id,
     destinationId: destination[0]._id,
     destinationName: 'Dubai',
+    _id: '630520d30b7f7a4f9473aa66',
   }
 ]
 
