@@ -76,7 +76,7 @@ const remove = async (request, response, next) => {
       return response.status(400).json({ message: `Destination with ID ${destinationId} not found` })
     }
     destinationToUpdate.reviews = destinationToUpdate.reviews.filter(
-      (review) => review.id.toString() !== reviewId
+      (review) => review.reviewId.toString() !== reviewId
     )
     await destinationToUpdate.save()
     // Remove review from user
@@ -85,7 +85,7 @@ const remove = async (request, response, next) => {
       return response.status(400).json({ message: `User with ID ${userId} not found` })
     }
     userToUpdate.reviews = userToUpdate.reviews.filter(
-      (review) => review.id.toString() !== reviewId
+      (review) => review.reviewId.toString() !== reviewId
     )
     await userToUpdate.save()
     // Remove review from database
