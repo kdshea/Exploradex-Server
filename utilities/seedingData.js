@@ -60,6 +60,7 @@ const destination = [
     description: 'Dubai (دبي) is one of the seven emirates that make up the United Arab Emirates. With shape like a slant rectangle, its bounded in the north by Sharjah and in the south by Abu Dhabi. The city is rather like an independent city-state and is the most modern and progressive emirate in the UAE, developing at a rapid pace, especially in the tourist and trade sectors. Recently, Dubai won the bid to host EXPO 2020, a Universal scale Registered Exposition approved by the Bureau of International Expositions (BIE), Paris.',
     rating: 5,
     reviews: [{
+      destinationId: '6304ef8126cede9afd876118',
       reviewText: 'We loved it!',
       rating: 5,
       activities: [ 'shopping', 'sightseeing' ],
