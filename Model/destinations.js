@@ -8,6 +8,7 @@ const destinationSchema = new mongoose.Schema({
   description: { type: String, required: true },
   rating: { type: Number, required: true },
   reviews: [ {
+    destinationId: {  type: mongoose.Schema.ObjectId, ref: 'destination', required: true },
     reviewText: { type: String, required: true },
     rating: { type: Number },
     activities: [{ type: String, required: true }],
