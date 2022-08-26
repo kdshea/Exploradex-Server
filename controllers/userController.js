@@ -2,6 +2,7 @@ import userModel from '../Model/user.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import CONSTS from './../consts.js'
+import destinationModel from '../Model/destinations.js'
 
 // ? ENDPOINT TO REGISTER NEW USER
 const register = async (request, response) => {
@@ -88,18 +89,22 @@ const update = async (request, response, next) => {
       return response.status(404).json( { message: `User with ID ${userId} not found` } )
     }
     // Only user or admin can update
-    console.log('user id of current user', userId.toString())
-    console.log('user id from params', userIdParam)
     if (userIdParam.toString() !== userId.toString()) {
       return response.status(401).json({
         message: 'Unauthorized',
       })
     }
 
-    // ! Update display name on user's reviews in destination, not the most important thing but will come back to this
-    // code to check in display name is updated?
+    // Update display name on user's reviews in destination
     // if (updatedUser.displayName !== userToBeUpdated.displayName) {
-    //   userToUpdate.reviews = userToUpdate.reviews.map((item) => {
+    //   console.log('name changed')
+    //   const destinationToUpdate = await destinationModel.find({ reviews.createdBy: userId})
+    // Need to map through the items returned above using the code below
+    //   destinationToUpdate.reviews = destinationToUpdate.reviews.map((item) => {
+    //     if (userId.toString() === item.createdBy.toString() ) {
+    //       console.log('inside user id to string ===')
+    //       item.displayName = updatedUser.displayName
+    //     }
     //   })
     //   await destinationToUpdate.save()
     // }
