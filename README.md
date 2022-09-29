@@ -16,11 +16,11 @@
 
 # Project Overview
 
-This is the third project I did for a Software Engineering Immersive course through General Assembly London. I worked with Serhan Miah and Chris Rainey. The Travel Library is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
+This is the third project I did for a Software Engineering Immersive course through General Assembly London. I worked with [Serhan Miah](https://github.com/SerhanMiah) and [Chris Rainey](https://github.com/chrainey). The Travel Library is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
 
 # Deployment Link
 
-The app has been deployed with Netlify and Heroku is available [here.}(https://sei65-destinations.netlify.app/)
+The app has been deployed with Netlify and Heroku is available [here.](https://sei65-destinations.netlify.app/)
 
 ![Landing](ReadMe-Images/Landing-Page.png)
 
