@@ -63,7 +63,6 @@ const remove = async (request, response, next) => {
     if (!reviewToBeDeleted) {
       return response.status(404).json( { message: `Review with ID ${reviewId} not found` } )
     }
-
     // Only user who made review or admin can remove
     if (reviewToBeDeleted.createdBy.toString() !== userId && request.currentUser.role !== 'admin') {
       return response.status(403).json({
@@ -141,7 +140,6 @@ const update = async (request, response, next) => {
       }
     })
     await userToUpdate.save()
-
     // Update review
     const updatedDocument = await reviewModel.findByIdAndUpdate(reviewId, updatedReview, { new: true })
     if (!updatedDocument) {
