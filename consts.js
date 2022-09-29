@@ -12,3 +12,4 @@ console.log('>>>>>>>> Environment variables defined as followed:')
 console.log(consts)
 
 export default consts
+
