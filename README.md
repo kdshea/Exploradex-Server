@@ -184,7 +184,3 @@ We had a few instances of accidentally working on the main branch rather than on
 	* Add the user uploaded images of destination to the carousel
 	* Use MapBox to display maps of locations
 
-# 📄 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
