@@ -13,6 +13,7 @@
 * [Key Learnings](#key-learnings)
 * [Bugs](#bugs)
 * [Future Improvements](#future-improvements) 
+* [Other Projects](#other-projects) 
 
 # Project Overview
 
@@ -183,4 +184,20 @@ We had a few instances of accidentally working on the main branch rather than on
 	* Ability to upload more than 1 image for a review
 	* Add the user uploaded images of destination to the carousel
 	* Use MapBox to display maps of locations
+   
+## Other Projects
+Take a look at other projects that I have in my own portfolio:
+
+**[Truffle Health Bill Upload](https://github.com/kdshea/Medical-Bill-Upload)**
+
+**[Seeker App](https://github.com/kdshea/Seeker-Full-Stack)** 
+
+**[Gmail Node Server](https://github.com/kdshea/Gmail-Node-Server)**
+
+**[Coconut Club](https://github.com/kdshea/Coconut-Club-Site)**
+
+**[Tetris Clone](https://github.com/kdshea/Tetris-Clone)**
+
+**[Speed Pour 2016](https://github.com/kdshea/Speed-Pour-2016)**
+
 
